@@ -1,0 +1,62 @@
+{
+	"name": "a",
+	"version": "0.0.0",
+	"description": "",
+	"private": true,
+	"license": "ISC",
+	"main": "A.js",
+	"types": "A.d.ts",
+	"files": [
+		"dist/*",
+		"build/*",
+		"A.js",
+		"A.d.ts"
+	],
+	"peerDependencies": {},
+	"dependencies": {},
+	"devDependencies": {
+		"babel-eslint": "^10.0.3",
+		"compression": "^1.7.4",
+		"css-loader": "^3.2.0",
+		"eslint": "^6.5.1",
+		"eslint-config-standard": "^14.1.0",
+		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-node": "^10.0.0",
+		"eslint-plugin-promise": "^4.2.1",
+		"eslint-plugin-standard": "^4.0.1",
+		"exports-loader": "^0.7.0",
+		"express": "^4.17.1",
+		"node-sass": "^4.12.0",
+		"progress-bar-webpack-plugin": "^1.12.1",
+		"pug": "^2.0.4",
+		"sass-loader": "^8.0.0",
+		"style-loader": "^1.0.0",
+		"webpack": "^4.41.0",
+		"webpack-cli": "^3.3.9",
+		"webpack-dev-middleware": "^3.7.2",
+		"webpack-dev-server": "^3.8.2",
+		"webpack-glsl-loader": "^1.0.1",
+		"worker-loader": "^2.0.0"
+	},
+	"scripts": {
+		"dist": "npm run build",
+		"build": "webpack --config webpack.config.prod.js",
+		"start": "node --max-old-space-size=8192 server.js",
+		"autofix": "eslint --fix ./",
+		"lint": "eslint ./",
+		"v": "webpack -v"
+	},
+	"lint-staged": {
+		"src/**/*.js": [
+			"prettier --write",
+			"eslint --fix",
+			"git add"
+		]
+	},
+	"husky": {
+		"hooks": {
+			"post-merge": "tnpm install",
+			"pre-commit": "lint-staged"
+		}
+	}
+}
